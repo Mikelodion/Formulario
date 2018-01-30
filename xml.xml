@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+ <question id='text1'>
+  <type>text</type>
+  <text>¿Como se llama el deporte en el que vas sobre una tabla con ruedas?</text>
+  <answer>skateboarding</answer>
+ </question>
+ <question id='text2'>
+  <type>text</type>
+  <text>¿como se llama la pieza que sujeta las ruedas y las une con la tabla?</text>
+  <answer>ejes</answer>
+ </question>
+ <question id='select1'>
+  <type>select</type>
+  <text>¿Si te caes con el Skate que intentaras que toque el suelo primero?</text>
+  <option>manos</option>
+  <option>cabeza</option> 
+  <option>omoplato</option>
+  <answer>2</answer> <!-- SelectedIndex = 0, 1 ó 2 , 2 vol dir la tercera opciói -->
+ </question>
+ <question id='select2'>
+  <type>select</type>
+  <text>¿Es necessario llevar protecciones cuando practicas este deporte?</text>
+  <option>si</option>
+  <option>no</option> 
+  <option>depende del nivel y la confianza del que lo practica</option> 
+  <answer>2</answer>
+ </question>
+ <question id="multiple1">
+   <type>multiple</type>
+   <text>Selecciona los diferentes estilos que hay en el skate.</text>
+   <option>regular</option>
+   <option>goofy</option>
+   <option>mongo</option>
+   <answer>0</answer>
+   <answer>1</answer>
+   <answer>2</answer>
+ </question>
+ <question id="multiple2">
+   <type>multiple</type>
+   <text>Selecciona las diferentes formas de ir sobre un skate.</text>
+   <option>nollie</option>
+   <option>normal</option>
+   <option>fakie</option>
+   <option>switch</option>
+   <answer>0</answer>
+   <answer>1</answer>
+   <answer>2</answer>
+   <answer>3</answer>
+ </question>
+ <question>
+   <type>checkbox</type>
+   <text>¿Que combinaciones posibles puedes hacer si lanzas un "flip"?</text>
+   
+ </question>
+</questions>
