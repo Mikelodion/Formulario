@@ -7,7 +7,7 @@
  </question>
  <question id='text2'>
     <type>text</type>
-    <text>¿como se llama la pieza que sujeta las ruedas y las une con la tabla?</text>
+    <text>¿Como se llama la pieza que sujeta las ruedas y las une con la tabla?</text>
     <answer>ejes</answer>
  </question>
  <question id='select1'>
@@ -72,7 +72,7 @@
  </question>
  <question id="radio1">
     <type>radio</type>
-    <text>¿CUal de los siguientes componentes no forma parte de los ejes?</text>
+    <text>¿Cual de los siguientes componentes no forma parte de los ejes?</text>
     <option>gomas</option>
     <option>tornillos de fijación</option>
     <option>tuerca</option>
