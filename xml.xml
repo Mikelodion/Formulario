@@ -51,10 +51,10 @@
  <question id="check0">
     <type>checkbox</type>
     <text>¿Que combinaciones posibles puedes hacer si lanzas un "flip"?</text>
-    <option>nollie flip</option>
-    <option>fakie flip</option>
-    <option>switch flip</option>
-    <option>mongo flip</option>
+    <option>Nollie flip</option>
+    <option>Fakie flip</option>
+    <option>Switch flip</option>
+    <option>Mongo flip</option>
     <answer>0</answer>
     <answer>1</answer>
     <answer>2</answer>   
@@ -62,9 +62,9 @@
  <question id="check1">
     <type>checkbox</type>
     <text>¿De que partes se compone un skate?</text>
-    <option>tabla</option>
-    <option>ejes</option>
-    <option>manillar</option>
+    <option>Tabla</option>
+    <option>Ejes</option>
+    <option>Manillar</option>
     <option>ruedas</option>
     <answer>0</answer>
     <answer>1</answer>
@@ -72,19 +72,19 @@
  </question>
  <question id="radio0">
     <type>radio</type>
-    <text>¿CUal de los siguientes componentes no forma parte de los ejes?</text>
-    <option>gomas</option>
-    <option>tornillos de fijación</option>
-    <option>tuerca</option>
-    <option>arandela</option>
-    <option>base</option>
+    <text>¿Cual de los siguientes componentes no forma parte de los ejes?</text>
+    <option>Gomas</option>
+    <option>Tornillos de fijación</option>
+    <option>Tuerca</option>
+    <option>Arandela</option>
+    <option>Base</option>
     <answer>3</answer>
  </question>
  <question id="radio1">
     <type>radio</type>
     <text>¿La zapatilla es el elemento que mas se gasta en el skateboarding?</text>
-    <option>si</option>
-    <option>no</option>
+    <option>Si</option>
+    <option>No</option>
     <answer>0</answer>
  </question>
 </questions>
