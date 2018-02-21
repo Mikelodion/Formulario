@@ -1,10 +1,12 @@
 
 var url = "https:rawgit.com/Mikelodion/Formulario/master/xml.xml";
-
+var respuestasCheckbox = [];
+var respuestasRadio = [];
+var formElement=null;
+var numeroSecreto=null;
+var respuestaSelect=null;
 window.onload = function(){ 
-
  //CORREGIR al apretar el botón
-
  
  //LEER XML de xml/preguntas.xml
  var xhttp = new XMLHttpRequest();
@@ -16,8 +18,6 @@ window.onload = function(){
  xhttp.open("GET",url, true);
  xhttp.send();
 }
-
-
 function gestionarXml(dadesXml){
 	var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
 	//Poner Titulos
@@ -26,8 +26,8 @@ function gestionarXml(dadesXml){
  		ponerDatosInputHtml(tituloInput, i);
 	}
 	//Select
- 	var opcionesSelect = [];
  	for (var b = 0; b<2; b++){
+ 		var opcionesSelect = [];
  		var nopt = xmlDoc.getElementById("select"+b).getElementsByTagName('option').length;
   		for (i = 0; i < nopt; i++) { 
    	 		opcionesSelect[i] = xmlDoc.getElementById("select"+b).getElementsByTagName('option')[i].innerHTML;
@@ -35,8 +35,8 @@ function gestionarXml(dadesXml){
  		ponerDatosSelectHtml(opcionesSelect,b);
  	}
  	//Select Multiple
- 	var opcionesSelectmultiple = [];
  	for(var b = 0; b<2; b++){
+ 		var opcionesSelectmultiple = [];
  		var noptm = xmlDoc.getElementById("multiple"+b).getElementsByTagName("option").length;
  		for(i=0; i<noptm; i++){
  			opcionesSelectmultiple[i] = xmlDoc.getElementById("multiple"+b).getElementsByTagName("option")[i].innerHTML;
@@ -46,8 +46,8 @@ function gestionarXml(dadesXml){
 
  	}
  	//CHECKBOX
-	var opcionesCheckbox = [];
 	for(b=0;b<2;b++){
+		var opcionesCheckbox = [];
  		var noptcheck = xmlDoc.getElementById("check"+b).getElementsByTagName('option').length;
 		for (i = 0; i < noptcheck; i++) { 
   	  		opcionesCheckbox[i]=xmlDoc.getElementById("check"+b).getElementsByTagName('option')[i].innerHTML;
@@ -55,18 +55,31 @@ function gestionarXml(dadesXml){
  		ponerDatosCheckboxHtml(opcionesCheckbox, b);
 	}
  	for(b=0;b<2;b++){
- 	var nres = xmlDoc.getElementById("check"+b).getElementsByTagName('answer').length;
+ 		var nres = xmlDoc.getElementById("check"+b).getElementsByTagName('answer').length;
+ 	
+ 		for (i = 0; i < nres; i++) { 
+  			respuestasCheckbox[i]=xmlDoc.getElementById("check"+b).getElementsByTagName("answer")[i].innerHTML;
+ 		}
  	}
- 	for (i = 0; i < nres; i++) { 
-  		respuestasCheckbox[i]=xmlDoc.getElementById("profe_003").getElementsByTagName("answer")[i].innerHTML;
+ 	//Radio
+	for(b=0;b<2;b++){
+ 		var opcionesRadio = [];
+ 		var noptradio = xmlDoc.getElementById("radio"+b).getElementsByTagName('option').length;
+		for (i = 0; i < noptradio; i++) { 
+  	  		opcionesRadio[i]=xmlDoc.getElementById("radio"+b).getElementsByTagName('option')[i].innerHTML;
+ 		}  
+ 		ponerDatosRadioHtml(opcionesRadio, b);
+	}
+ 	for(b=0;b<2;b++){
+ 		var nres = xmlDoc.getElementById("radio"+b).getElementsByTagName('answer').length;
+ 		for (i = 0; i < nres; i++) { 
+  			respuestasRadio[i]=xmlDoc.getElementById("radio"+b).getElementsByTagName("answer")[i].innerHTML;
+ 		}
  	}
 }
-
-
 function ponerDatosInputHtml(t, i){
 	document.getElementsByTagName("h4")[i].innerHTML = t;
 }
-
 function ponerDatosSelectHtml(opt,b){
 	
   		var select = document.getElementsByTagName("select")[b];
@@ -76,7 +89,6 @@ function ponerDatosSelectHtml(opt,b){
     		option.value=i+1;
     		select.options.add(option);
  		}  
-	
 }
 function ponerDatosSelectMultipleHtml(optm,b){
 	
@@ -88,7 +100,6 @@ function ponerDatosSelectMultipleHtml(optm,b){
     		select.options.add(option);
  		}  
 }
-
 function ponerDatosCheckboxHtml(opt,b){
  	var checkboxContainer=document.getElementsByTagName('fieldset')[b+6];
  	for (i = 0; i < opt.length; i++) { 
@@ -101,7 +112,28 @@ function ponerDatosCheckboxHtml(opt,b){
    	 	input.id="parte_"+i;;    
    		checkboxContainer.appendChild(input);
    	 	checkboxContainer.appendChild(label);
-  	 	checkboxContainer.appendChild(document.createElement("br")); 
+		checkboxContainer.appendChild(document.createElement("br"));
 	}
+  	 	checkboxContainer.appendChild(document.createElement("hr")); 
 }
-
+function ponerDatosRadioHtml(opt,b){
+ 	var radioContainer=document.getElementsByTagName('fieldset')[b+8];
+ 	for (i = 0; i < opt.length; i++) { 
+   	 	var input = document.createElement("input");
+   	 	var label = document.createElement("label");
+    	label.innerHTML=opt[i];
+   	 	label.setAttribute("for", "respuesta_"+i);
+   	 	input.type="radio";
+    	input.name="respuesta";
+   	 	input.id="respuesta_"+i;;    
+   		radioContainer.appendChild(input);
+   	 	radioContainer.appendChild(label);
+  	 	radioContainer.appendChild(document.createElement("br")); 
+	}
+	if (b==0)
+  	 	radioContainer.appendChild(document.createElement("hr")); 
+  	 else{
+  	 	radioContainer.appendChild(document.createElement("br")); 
+  		radioContainer.appendChild(document.createElement("br"));
+  	}
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+ <question id='text0'>
+    <type>text</type>
+    <text>¿Como se llama el deporte en el que vas sobre una tabla con ruedas?</text>
+    <answer>Skateboarding</answer>
+ </question>
+ <question id='text1'>
+    <type>text</type>
+    <text>¿Como se llama la pieza que sujeta las ruedas y las une con la tabla?</text>
+    <answer>Ejes</answer>
+ </question>
+ <question id='select0'>
+    <type>select</type>
+    <text>¿Si te caes con el Skate que intentaras que toque el suelo primero?</text>
+    <option>Manos</option>
+    <option>Cabeza</option> 
+    <option>Omoplato</option>
+    <answer>2</answer> <!-- SelectedIndex = 0, 1 ó 2 , 2 vol dir la tercera opciói -->
+ </question>
+ <question id='select1'>
+    <type>select</type>
+    <text>¿Es necessario llevar protecciones cuando practicas este deporte?</text>
+    <option>Si</option>
+    <option>No</option> 
+    <option>Depende del nivel y la confianza del que lo practica</option> 
+    <answer>2</answer>
+ </question>
+ <question id="multiple0">
+    <type>multiple</type>
+    <text>Selecciona los diferentes estilos que hay en el skate.</text>
+    <option>Regular</option>
+    <option>Goofy</option>
+    <option>Mongo</option>
+    <answer>0</answer>
+    <answer>1</answer>
+    <answer>2</answer>
+ </question>
+ <question id="multiple1">
+    <type>multiple</type>
+    <text>Selecciona las diferentes formas de ir sobre un skate.</text>
+    <option>Nollie</option>
+    <option>Normal</option>
+    <option>Fakie</option>
+    <option>Switch</option>
+    <answer>0</answer>
+    <answer>1</answer>
+    <answer>2</answer>
+    <answer>3</answer>
+ </question>
+ <question id="check0">
+    <type>checkbox</type>
+    <text>¿Que combinaciones posibles puedes hacer si lanzas un "flip"?</text>
+    <option>Nollie flip</option>
+    <option>Fakie flip</option>
+    <option>Switch flip</option>
+    <option>Mongo flip</option>
+    <answer>0</answer>
+    <answer>1</answer>
+    <answer>2</answer>   
+ </question>
+ <question id="check1">
+    <type>checkbox</type>
+    <text>¿De que partes se compone un skate?</text>
+    <option>Tabla</option>
+    <option>Ejes</option>
+    <option>Manillar</option>
+    <option>Ruedas</option>
+    <answer>0</answer>
+    <answer>1</answer>
+    <answer>3</answer>   
+ </question>
+ <question id="radio0">
+    <type>radio</type>
+    <text>¿Cual de los siguientes componentes no forma parte de los ejes?</text>
+    <option>Gomas</option>
+    <option>Tornillos de fijación</option>
+    <option>Tuerca</option>
+    <option>Arandela</option>
+    <option>Base</option>
+    <answer>3</answer>
+ </question>
+ <question id="radio1">
+    <type>radio</type>
+    <text>¿La zapatilla es el elemento que mas se gasta en el skateboarding?</text>
+    <option>Si</option>
+    <option>No</option>
+    <answer>0</answer>
+ </question>
+</questions>
