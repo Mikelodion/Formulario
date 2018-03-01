@@ -1,5 +1,9 @@
-body,html{height:100%;padding:0px;margin:0px}
-body{   
+
+body,html{height:100%;
+    padding:0px;
+    margin:0px;
+}
+body{
 	font-size: 3vw;
     width: 80%;
     padding-left: 10%;
@@ -8,7 +12,7 @@ body{
     opacity: 0.8;}
 #navegador{
     z-index: 10;
-    padding-left: 10%;
+    padding-left: 0%;
     position: fixed;
     width: 100%;
     height: 15%;
@@ -22,8 +26,10 @@ body{
     text-align: center;
     position: absolute;
 }
-
-.contenedor{
+#logo img{
+    width: 30%;
+}
+#contenedor{
     width: 80%;
     background-color: whitesmoke;
     border: 4px solid;
@@ -33,6 +39,7 @@ body{
 }
 
 h4{
+    text-shadow:3px 1px 10px;
     padding: 0% 3%;
     margin-bottom: 4%;
 }
@@ -40,4 +47,44 @@ h4{
 fieldset{
     text-decoration: none;
     border: none;
+}
+h3{
+    text-align: center;
+    text-decoration: underline;
+    text-shadow:3px 1px 10px;
+    margin-bottom: -5%;
+}
+h6{
+   text-shadow:3px 1px 10px;
+   text-align: center;
+}
+input{
+    text-shadow: 3px 1px 10px;
+    margin-left: 15%;
+    padding: 1% 2%;
+    text-align: center;
+    font: bold 30px "Trebuchet MS";
+    text-transform: uppercase;
+    box-shadow: 3px 4px 5px;
+    margin-right: 2%;
+}
+select{
+    text-shadow: 3px 1px 10px;
+    box-shadow: 10px 7px 11px;
+    margin-left: 15%;
+    font: bold 30px "Trebuchet MS";
+}
+option{
+    text-shadow: 3px 1px 10px;
+    font: bold 30px "Trebuchet MS";   
+}
+label{
+    text-shadow: 3px 1px 10px;
+    font: bold 30px "Trebuchet MS";
+}
+hr{
+width: 91%;
+}
+#enviar{
+    margin-left: 43%;
 }

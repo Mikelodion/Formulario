@@ -1,5 +1,5 @@
 
-var url = "https:rawgit.com/Mikelodion/Formulario/master/xml.xml";
+var url = "https://rawgit.com/Mikelodion/Formulario/master/xml/xml.xml";
 var respuestasCheckbox = [];
 var respuestasRadio = [];
 var formElement=null;
@@ -7,6 +7,17 @@ var numeroSecreto=null;
 var respuestaSelect=null;
 window.onload = function(){ 
  //CORREGIR al apretar el botón
+ formElement=document.getElementById('contenedor');
+ formElement.onsubmit=function(){
+   inicializar();
+   if (comprobar()){
+    corregirNumber();
+    corregirSelect();
+    corregirCheckbox();
+    presentarNota();
+   }
+   return false;
+ }
  
  //LEER XML de xml/preguntas.xml
  var xhttp = new XMLHttpRequest();
@@ -136,4 +147,25 @@ function ponerDatosRadioHtml(opt,b){
   	 	radioContainer.appendChild(document.createElement("br")); 
   		radioContainer.appendChild(document.createElement("br"));
   	}
+}
+
+function comprobar(){
+   var f=formElement;
+   var checked=false;
+   for (i = 0; i < f.parte.length; i++) {  //"color" es el nombre asignado a todos los checkbox
+      if (f.parte[i].checked) checked=true;
+   }
+   if (f.elements[0].value==""|| f.elements[1].value=="") {
+    f.elements[0].focus();
+    alert("Escribe algo");
+    return false;
+   } else if (f.elements[2].selectedIndex==0||f.elements[3].value==0) {
+    f.elements[2].focus();
+    alert("Selecciona una opción");
+    return false;
+   } if (!checked) {    
+    document.getElementsByTagName("h3")[2].focus();
+    alert("Selecciona una opción del checkbox");
+    return false;
+   } else  return true;
 }
