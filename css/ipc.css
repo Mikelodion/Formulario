@@ -125,7 +125,7 @@ a:hover{
 #link{
  text-align: center;   
 }
-#text{
+.text{
 	font-size:35px;
 	margin: 2%;
     opacity: 1;
