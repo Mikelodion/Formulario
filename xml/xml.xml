@@ -3,17 +3,17 @@
 <questions>
  <question id='text0'>
     <type>title</type>
-    <title>¿Como se llama el deporte en el que vas sobre una tabla con ruedas?</title>
+    <title>¿Cómo se llama el deporte en el que vas sobre una tabla con ruedas?</title>
     <answer>skateboarding</answer>
  </question>
  <question id='text1'>
     <type>title</type>
-    <title>¿Como se llama la pieza que sujeta las ruedas y las une con la tabla?</title>
+    <title>¿Cómo se llama la pieza que sujeta las ruedas y las une con la tabla?</title>
     <answer>ejes</answer>
  </question>
  <question id='select0'>
     <type>select</type>
-    <title>¿Si te caes con el Skate que intentaras que toque el suelo primero?</title>
+    <title>¿Si te caes con el Skate que intentarás que toque el suelo primero?</title>
     <option>Manos</option>
     <option>Cabeza</option> 
     <option>Omoplato</option>
@@ -22,7 +22,7 @@
  <question id='select1'>
     <type>select</type>
     <title>¿Es necessario llevar protecciones cuando practicas este deporte?</title>
-    <option>Si</option>
+    <option>Sí</option>
     <option>No</option> 
     <option>Depende del nivel y la confianza del que lo practica</option> 
     <answer>2</answer>
@@ -73,7 +73,7 @@
  </question>
  <question id="radio0">
     <type>radio</type>
-    <title>¿Cual de los siguientes componentes no forma parte de los ejes?</title>
+    <title>¿Cuál de los siguientes componentes no forma parte de los ejes?</title>
     <option>Gomas</option>
     <option>Tornillos de fijación</option>
     <option>Tuerca</option>
@@ -83,8 +83,8 @@
  </question>
  <question id="radio1">
     <type>radio</type>
-    <title>¿La zapatilla es el elemento que mas se gasta en el skateboarding?</title>
-    <option>Si</option>
+    <title>¿La zapatilla es el elemento que más se gasta en el skateboarding?</title>
+    <option>Sí</option>
     <option>No</option>
     <answer>0</answer>
  </question>
