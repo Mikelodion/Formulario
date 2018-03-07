@@ -29,7 +29,7 @@ h4{
     display: block;
     background-color: #4c4507;
     font-weight: bold;
-	font-size: 2.75vw;
+	font-size: 3.75vw;
     text-align: center;
     color: lightcyan;
     float:left;
@@ -80,7 +80,7 @@ h4{
     opacity: 0.6;
     position: absolute;
     margin-left: 10%;
-    margin-top: 30%;
+    margin-top: 45%;
     z-index:1;
 }
 

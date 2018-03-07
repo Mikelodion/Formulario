@@ -1,0 +1,123 @@
+    "question": [
+      {
+        "-id": "text0",
+        "type": "text",
+        "text": "¿Como se llama el deporte en el que vas sobre una tabla con ruedas?",
+        "answer": "Skateboarding"
+      },
+      {
+        "-id": "text1",
+        "type": "text",
+        "text": "¿Como se llama la pieza que sujeta las ruedas y las une con la tabla?",
+        "answer": "Ejes"
+      },
+      {
+        "-id": "select0",
+        "type": "select",
+        "text": "¿Si te caes con el Skate que intentaras que toque el suelo primero?",
+        "option": [
+          "Manos",
+          "Cabeza",
+          "Omoplato"
+        ],
+        "answer": "2"
+      },
+      {
+        "-id": "select1",
+        "type": "select",
+        "text": "¿Es necessario llevar protecciones cuando practicas este deporte?",
+        "option": [
+          "Si",
+          "No",
+          "Depende del nivel y la confianza del que lo practica"
+        ],
+        "answer": "2"
+      },
+      {
+        "-id": "multiple0",
+        "type": "multiple",
+        "text": "Selecciona los diferentes estilos que hay en el skate.",
+        "option": [
+          "Regular",
+          "Goofy",
+          "Mongo"
+        ],
+        "answer": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      {
+        "-id": "multiple1",
+        "type": "multiple",
+        "text": "Selecciona las diferentes formas de ir sobre un skate.",
+        "option": [
+          "Nollie",
+          "Normal",
+          "Fakie",
+          "Switch"
+        ],
+        "answer": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      {
+        "-id": "check0",
+        "type": "checkbox",
+        "text": "¿Que combinaciones posibles puedes hacer si lanzas un \"flip\"?",
+        "option": [
+          "Nollie flip",
+          "Fakie flip",
+          "Switch flip",
+          "Mongo flip"
+        ],
+        "answer": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      {
+        "-id": "check1",
+        "type": "checkbox",
+        "text": "¿De que partes se compone un skate?",
+        "option": [
+          "Tabla",
+          "Ejes",
+          "Manillar",
+          "Ruedas"
+        ],
+        "answer": [
+          "0",
+          "1",
+          "3"
+        ]
+      },
+      {
+        "-id": "radio0",
+        "type": "radio",
+        "text": "¿Cual de los siguientes componentes no forma parte de los ejes?",
+        "option": [
+          "Gomas",
+          "Tornillos de fijación",
+          "Tuerca",
+          "Arandela",
+          "Base"
+        ],
+        "answer": "3"
+      },
+      {
+        "-id": "radio1",
+        "type": "radio",
+        "text": "¿La zapatilla es el elemento que mas se gasta en el skateboarding?",
+        "option": [
+          "Si",
+          "No"
+        ],
+        "answer": "0"
+      }
+    ]
