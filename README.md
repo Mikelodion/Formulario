@@ -50,11 +50,11 @@ Para facilitar la comprensión de este, he dividido los estilos de ambas página
  
  -**Gestionar XML:** Esta parte se encarga de cargar la web con toda la información que se encuentra en el xml. A la vez que cargamos los títulos, añadiremos todas las respuestas en una array bidimensional para asi a la hora de corregir tener las respuestas correctas a mano.
  
- __onclick__ 
+ __Onclick__ 
  
- Cuando pulsemos el botón de enviar:
+ -Cuando pulsemos el botón de enviar:
  
- Aqui he añadido la funcionalidad de no dejarte corregir si ya lo has echo. Si no, primeramente va a inicializar la variable "nota" a 0, **comprobar**emos que se han respondido todas las preguntas para que el test se haga sobre todas las preguntas, despues **corregir**emos cada tipo de pregunta (text,select,multiple,check,radio) con una función "corregir" para cada tipo y finalmente **presentar**emos la nota dependiendo del numero de errores y aciertos. 
+ -Aqui he añadido la funcionalidad de no dejarte corregir si ya lo has echo. Si no, primeramente va a inicializar la variable "nota" a 0, **comprobar**emos que se han respondido todas las preguntas para que el test se haga sobre todas las preguntas, despues **corregir**emos cada tipo de pregunta (text,select,multiple,check,radio) con una función "corregir" para cada tipo y finalmente **presentar**emos la nota dependiendo del numero de errores y aciertos. 
  
  ## NO CORRIGE CHECKBOX NI SELECT MULTIPLE
  
