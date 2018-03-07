@@ -3,11 +3,23 @@ var url = "https://rawgit.com/Mikelodion/Formulario/master/xml/xml.xml";
 var respuestasCheckbox = [];
 var respuestasRadio = [];
 var formElement=null;
+var p=null;
 var numeroSecreto=null;
 var respuestaSelect=null;
+
 window.onload = function(){ 
+ //LEER XML de xml/preguntas.xml
+ var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+   gestionarXml(this);
+  }
+ };
+ xhttp.open("GET",url, true);
+ xhttp.send();
  //CORREGIR al apretar el botón
  formElement=document.getElementById('contenedor');
+ p= document.getElementsByTagName("parte");
  formElement.onsubmit=function(){
    inicializar();
    if (comprobar()){
@@ -18,22 +30,12 @@ window.onload = function(){
    }
    return false;
  }
- 
- //LEER XML de xml/preguntas.xml
- var xhttp = new XMLHttpRequest();
- xhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   gestionarXml(this);
-  }
- };
- xhttp.open("GET",url, true);
- xhttp.send();
 }
 function gestionarXml(dadesXml){
 	var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
 	//Poner Titulos
 	for (var i = 0; i <10; i++) {
-	 	var tituloInput=xmlDoc.getElementsByTagName("text")[i].innerHTML;
+	 	var tituloInput=xmlDoc.getElementsByTagName("title")[i].innerHTML;
  		ponerDatosInputHtml(tituloInput, i);
 	}
 	//Select
@@ -116,6 +118,7 @@ function ponerDatosCheckboxHtml(opt,b){
  	for (i = 0; i < opt.length; i++) { 
    	 	var input = document.createElement("input");
    	 	var label = document.createElement("label");
+   	 	if (b==0) {
     	label.innerHTML=opt[i];
    	 	label.setAttribute("for", "parte_"+i);
    	 	input.type="checkbox";
@@ -124,6 +127,17 @@ function ponerDatosCheckboxHtml(opt,b){
    		checkboxContainer.appendChild(input);
    	 	checkboxContainer.appendChild(label);
 		checkboxContainer.appendChild(document.createElement("br"));
+		}
+		if(b==1){
+			label.innerHTML=opt[i];
+   	 	label.setAttribute("for", "parte_"+i);
+   	 	input.type="checkbox";
+    	input.name="parte";
+   	 	input.id="parte_"+i;;    
+   		checkboxContainer.appendChild(input);
+   	 	checkboxContainer.appendChild(label);
+		checkboxContainer.appendChild(document.createElement("br"));
+		}
 	}
   	 	checkboxContainer.appendChild(document.createElement("hr")); 
 }
@@ -133,10 +147,10 @@ function ponerDatosRadioHtml(opt,b){
    	 	var input = document.createElement("input");
    	 	var label = document.createElement("label");
     	label.innerHTML=opt[i];
-   	 	label.setAttribute("for", "respuesta_"+i);
+   	 	label.setAttribute("for", "parte"+i);
    	 	input.type="radio";
-    	input.name="respuesta";
-   	 	input.id="respuesta_"+i;;    
+    	input.name="parte";
+   	 	input.id="parte_"+i;;    
    		radioContainer.appendChild(input);
    	 	radioContainer.appendChild(label);
   	 	radioContainer.appendChild(document.createElement("br")); 
@@ -148,24 +162,128 @@ function ponerDatosRadioHtml(opt,b){
   		radioContainer.appendChild(document.createElement("br"));
   	}
 }
+function inicializar(){
+   //document.getElementById('resultadosDiv').innerHTML = "";
+   nota=0.0;
+}
 
 function comprobar(){
    var f=formElement;
-   var checked=false;
-   for (i = 0; i < f.parte.length; i++) {  //"color" es el nombre asignado a todos los checkbox
-      if (f.parte[i].checked) checked=true;
-   }
-   if (f.elements[0].value==""|| f.elements[1].value=="") {
-    f.elements[0].focus();
-    alert("Escribe algo");
-    return false;
-   } else if (f.elements[2].selectedIndex==0||f.elements[3].value==0) {
-    f.elements[2].focus();
-    alert("Selecciona una opción");
-    return false;
-   } if (!checked) {    
-    document.getElementsByTagName("h3")[2].focus();
-    alert("Selecciona una opción del checkbox");
-    return false;
-   } else  return true;
+   var checked0;
+   var checked1;
+   var checked2;
+   
+   
+   //Comprobar texts
+    for(i = 1; i < 4; i++){
+	   if (f.elements[i].value=="") {
+			f.elements[i].focus();
+			alert("Escribe una respuesta.");
+			return false;
+	   }
+	}
+	
+	//Comprobar selects
+	for(i=1;i<4;i++){
+		if(f.elements[i+4].selectedIndex==0) {
+			f.elements[i+4].focus();
+			alert("Selecciona una opción");
+			return false;
+		}
+	} 
+	
+	//Comprobar selects-multiple
+	for(i=1;i<4;i++){
+		if(f.elements[i+8].selectedIndex==-1 || f.elements[i+8].selectedIndex==0) {
+			f.elements[i+8].focus();
+			alert("Selecciona almenos una opción");
+			return false;
+		}
+	} 
+	
+	/*//Comporbar checkbox
+	for(i=0; i<8; i++){
+		checked0=false;
+		checked1=false;
+		
+		if(i<4){
+			if (f.p.checked) checked0=true;
+		}
+		else{
+			if(f.p.checked) checked1=true;
+		}
+
+	
+			if (!checked) {
+				f.parte[0].focus();
+				alert("Selecciona almenos una opción");
+				return false;
+
+			}
+			if (!checked1) {
+				f.parte[4].focus();
+				alert("Selecciona almenos una opción");
+				return false;
+			}
+	}
+		
+
+	
+	//Comprobar radios
+	for(i=0;i<2;i++){
+		parte=f.nueve;
+        if (i==1){
+            parte=f.diez;
+        }
+        if (parte.value=="") {
+            name[0].focus();
+            alert("Seleciona una opción");
+            return false;
+        }   
+    }
+	return true;	//Todas las preguntas contestadas*/
+}
+function corregirText(){
+
+	var f=formElement;
+	for(numeroQuestion=0; numeroQuestion<2; numeroQuestion++){
+		
+		if(respuestas[numeroQuestion][0]==f.elements[1+numeroQuestion*2].value){
+			alert("correcto");
+			nota+=1;
+		}
+	}
+}
+
+function corregirSelect(){
+
+	var f=formElement;
+	for(numeroQuestion=2; numeroQuestion<4; numeroQuestion++){
+		
+		if(respuestas[numeroQuestion][0]==f.elements[1+numeroQuestion*2].value){
+			alert("correcto");
+		}
+	}
+}
+
+function corregirMultiple(){
+	for(numeroQuestion=4;numeroQuestion<6;numeroQuestion++){
+        var sel = formElement.elements[1+numeroQuestion*2];
+        var escorrecta=[];
+
+        for(i=1;i<(sel.length);i++){		// recorr per tantes opcions que hi ha, saltant la primera que es la defecte
+            var opt=sel.options[i];			// obte la opció i
+
+            if(opt.selected){//si la opció i està selecionada
+            	escorrecta[i]=false;
+            	for(j=0; j<nRespuestas[numeroQuestion]; j++){
+            			//guardamos si es correcta o no
+            		if(i-1==respuestas[numeroQuestion][j]) escorrecta[i]=true;
+            	}
+            	//poner nota por correcta o no
+
+
+            }
+        }
+	}
 }
