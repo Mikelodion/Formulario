@@ -26,10 +26,11 @@ La estrucura del html es la siguiente:
    
         -Este tiene un div fijo que contiene el logo de la página, el cual si lo pulsas te saldrá un mensaje de aviso de que te estas saliendo del test para ir a la página de inicio. Dentro de este también encontramos el div que cuando le demos a corregir va a aparecer junto a la nota.
         
-        -El formulario que contiene un contenedor por cada pregunta y su tipo de respuesta.
+        -El contenedor "myform" que contiene un contenedor para cada pregunta y sus respuestas.
 
 **CSS**
 
-Para facilitar la comprensión de este, he dividido los estilos de ambas páginas, por lo que tenemos 2 documentos css (uno para movil y otro para pc) para la página de inicio y otros 2 para la página del formulario.
+Para facilitar la comprensión de este, he dividido los estilos de ambas páginas, por lo que tenemos 2 documentos css (uno para movil y otro para pc) para la página de inicio y otros 2 para la página del formulario. Los archivos css que tienen la letra "i" en el inicio del nombre son los correspondientes a la página de inicio.
+
 
 **JavaScript**
