@@ -1,42 +1,61 @@
 
 var url = "https://rawgit.com/Mikelodion/Formulario/master/xml/xml.xml";
-var respuestasCheckbox = [];
-var respuestasRadio = [];
 var formElement=null;
-var p=null;
-var numeroSecreto=null;
-var respuestaSelect=null;
+var respuestas=[];
+var nRespuestas=[];
+var nota=0;
+var examenRealizado=false;
+
 
 window.onload = function(){ 
- //LEER XML de xml/preguntas.xml
- var xhttp = new XMLHttpRequest();
- xhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-   gestionarXml(this);
-  }
- };
+ 	//LEER XML de xml/preguntas.xml
+ 	var xhttp = new XMLHttpRequest();
+ 	xhttp.onreadystatechange = function() {
+  		if (this.readyState == 4 && this.status == 200) {
+   			gestionarXml(this);
+  		}
+ 	};
  xhttp.open("GET",url, true);
  xhttp.send();
  //CORREGIR al apretar el botón
  formElement=document.getElementById('contenedor');
- p= document.getElementsByTagName("parte");
- formElement.onsubmit=function(){
-   inicializar();
-   if (comprobar()){
-    corregirNumber();
-    corregirSelect();
-    corregirCheckbox();
-    presentarNota();
-   }
-   return false;
- }
+ 	formElement.onsubmit=function(){
+ 		if (!examenRealizado) {
+	  	 inicializar();
+	  	 	if (comprobar()){
+	   			if (confirm("¿Quieres corregir el examen?")) {
+		    		corregirText();
+		   			corregirSelect();
+		   			corregirRadio();
+		    		//corregirCheckbox();
+		    		presentarNota();
+		    		examenRealizado=true;
+				}
+	   		}
+		}else{
+			alert("Ya has corregido el examen")
+		}	
+   		return false;
+ 	}
+ 	document.getElementById("logo").onclick = function () {
+		if(confirm("¿Seguro que desea salir del examen?")){
+			window.open("Inici.html","_self");
+		}
+	}
 }
 function gestionarXml(dadesXml){
 	var xmlDoc = dadesXml.responseXML; //Parse XML to xmlDoc
-	//Poner Titulos
+	//Poner Titulos y Respuestas
 	for (var i = 0; i <10; i++) {
 	 	var tituloInput=xmlDoc.getElementsByTagName("title")[i].innerHTML;
  		ponerDatosInputHtml(tituloInput, i);
+
+ 		nRespuestas[i]=xmlDoc.getElementsByTagName("question")[i].getElementsByTagName("answer").length;
+		respuestas[i]=[];
+		for(b=0; b<nRespuestas[i]; b++){
+
+			respuestas[i][b] = xmlDoc.getElementsByTagName("question")[i].getElementsByTagName("answer")[b].innerHTML;
+		}
 	}
 	//Select
  	for (var b = 0; b<2; b++){
@@ -67,13 +86,6 @@ function gestionarXml(dadesXml){
  		}  
  		ponerDatosCheckboxHtml(opcionesCheckbox, b);
 	}
- 	for(b=0;b<2;b++){
- 		var nres = xmlDoc.getElementById("check"+b).getElementsByTagName('answer').length;
- 	
- 		for (i = 0; i < nres; i++) { 
-  			respuestasCheckbox[i]=xmlDoc.getElementById("check"+b).getElementsByTagName("answer")[i].innerHTML;
- 		}
- 	}
  	//Radio
 	for(b=0;b<2;b++){
  		var opcionesRadio = [];
@@ -83,12 +95,6 @@ function gestionarXml(dadesXml){
  		}  
  		ponerDatosRadioHtml(opcionesRadio, b);
 	}
- 	for(b=0;b<2;b++){
- 		var nres = xmlDoc.getElementById("radio"+b).getElementsByTagName('answer').length;
- 		for (i = 0; i < nres; i++) { 
-  			respuestasRadio[i]=xmlDoc.getElementById("radio"+b).getElementsByTagName("answer")[i].innerHTML;
- 		}
- 	}
 }
 function ponerDatosInputHtml(t, i){
 	document.getElementsByTagName("h4")[i].innerHTML = t;
@@ -99,7 +105,7 @@ function ponerDatosSelectHtml(opt,b){
   		for (i = 0; i < opt.length; i++) { 
     		var option = document.createElement("option");
     		option.text = opt[i];
-    		option.value=i+1;
+    		option.value=i;
     		select.options.add(option);
  		}  
 }
@@ -109,7 +115,7 @@ function ponerDatosSelectMultipleHtml(optm,b){
   		for (i = 0; i < optm.length; i++) { 
     		var option = document.createElement("option");
     		option.text = optm[i];
-    		option.value=i+1;
+    		option.value=i;
     		select.options.add(option);
  		}  
 }
@@ -142,15 +148,21 @@ function ponerDatosCheckboxHtml(opt,b){
   	 	checkboxContainer.appendChild(document.createElement("hr")); 
 }
 function ponerDatosRadioHtml(opt,b){
+	var pregunta="nueve";
+	if (b==1){
+		pregunta="diez";
+	}
+
  	var radioContainer=document.getElementsByTagName('fieldset')[b+8];
  	for (i = 0; i < opt.length; i++) { 
    	 	var input = document.createElement("input");
    	 	var label = document.createElement("label");
     	label.innerHTML=opt[i];
-   	 	label.setAttribute("for", "parte"+i);
+   	 	label.setAttribute("for", pregunta+i+b);
    	 	input.type="radio";
-    	input.name="parte";
-   	 	input.id="parte_"+i;;    
+    	input.name=pregunta;
+   	 	input.id=pregunta+i+b;; 
+   	 	input.value=i;   
    		radioContainer.appendChild(input);
    	 	radioContainer.appendChild(label);
   	 	radioContainer.appendChild(document.createElement("br")); 
@@ -169,9 +181,8 @@ function inicializar(){
 
 function comprobar(){
    var f=formElement;
-   var checked0;
-   var checked1;
-   var checked2;
+   var checked;
+   var name;
    
    
    //Comprobar texts
@@ -194,7 +205,7 @@ function comprobar(){
 	
 	//Comprobar selects-multiple
 	for(i=1;i<4;i++){
-		if(f.elements[i+8].selectedIndex==-1 || f.elements[i+8].selectedIndex==0) {
+		if(f.elements[i+8].selectedIndex==-1) {
 			f.elements[i+8].focus();
 			alert("Selecciona almenos una opción");
 			return false;
@@ -225,23 +236,20 @@ function comprobar(){
 				alert("Selecciona almenos una opción");
 				return false;
 			}
-	}
-		
-
-	
+	}*/
 	//Comprobar radios
 	for(i=0;i<2;i++){
-		parte=f.nueve;
+		name=f.nueve;
         if (i==1){
-            parte=f.diez;
+            name=f.diez;
         }
-        if (parte.value=="") {
+        if (name.value=="") {
             name[0].focus();
             alert("Seleciona una opción");
             return false;
         }   
     }
-	return true;	//Todas las preguntas contestadas*/
+	return true;	//Todas las preguntas contestadas
 }
 function corregirText(){
 
@@ -249,23 +257,21 @@ function corregirText(){
 	for(numeroQuestion=0; numeroQuestion<2; numeroQuestion++){
 		
 		if(respuestas[numeroQuestion][0]==f.elements[1+numeroQuestion*2].value){
-			alert("correcto");
 			nota+=1;
 		}
 	}
 }
-
 function corregirSelect(){
 
-	var f=formElement;
 	for(numeroQuestion=2; numeroQuestion<4; numeroQuestion++){
 		
-		if(respuestas[numeroQuestion][0]==f.elements[1+numeroQuestion*2].value){
-			alert("correcto");
+		if(respuestas[numeroQuestion][0]==document.getElementsByTagName("select")[numeroQuestion-2].value){
+			nota+=1;
+		}else{
+			nota-=1.0
 		}
 	}
 }
-
 function corregirMultiple(){
 	for(numeroQuestion=4;numeroQuestion<6;numeroQuestion++){
         var sel = formElement.elements[1+numeroQuestion*2];
@@ -286,4 +292,29 @@ function corregirMultiple(){
             }
         }
 	}
+}
+function corregirRadio(){
+	var f=formElement;
+	var radio;
+	for (numeroQuestion=8; numeroQuestion<10; numeroQuestion++) {
+		if(numeroQuestion==8){
+			radio=f.nueve;
+		}else{
+			radio=f.diez;
+		}
+		if(radio.value==respuestas[numeroQuestion][0]){
+			nota+=1.0;
+		}else{
+			nota-=1.0/radio.length;
+		}
+	}
+}
+function presentarNota(){
+	var p = document.createElement("h5");
+	if(nota<0) nota=0;
+    	var node = document.createTextNode("Tu nota es: " + nota.toFixed(2));
+    	p.appendChild(node);
+    	document.getElementById("nota").appendChild(p);
+    	document.getElementById("resultado").style.display="block";
+    	window.location.hash = '#nota';
 }

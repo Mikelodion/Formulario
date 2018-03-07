@@ -86,3 +86,14 @@ width: 91%;
 #enviar{
     margin-left: 43%;
 }
+#resultado{
+    width: 100%;
+    position: relative;
+    display: none;
+    text-align: center;
+    margin-top: -3%;
+}
+#nota{
+    position: relative;
+    color: white;
+}

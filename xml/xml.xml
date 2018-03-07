@@ -4,12 +4,12 @@
  <question id='text0'>
     <type>title</type>
     <title>¿Como se llama el deporte en el que vas sobre una tabla con ruedas?</title>
-    <answer>Skateboarding</answer>
+    <answer>skateboarding</answer>
  </question>
  <question id='text1'>
     <type>title</type>
     <title>¿Como se llama la pieza que sujeta las ruedas y las une con la tabla?</title>
-    <answer>Ejes</answer>
+    <answer>ejes</answer>
  </question>
  <question id='select0'>
     <type>select</type>
